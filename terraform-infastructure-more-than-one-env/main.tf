@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "main" {
-    cidr_block = "192.168.0.0/16"
+    cidr_block = "${var.vpc_cidr}"
 
     tags {
         Name = "main"
@@ -13,7 +13,7 @@ resource "aws_vpc" "main" {
 
 resource "aws_subnet" "main_public_a" {
   vpc_id = "${aws_vpc.main.id}"
-  cidr_block = "192.168.2.0/24"
+  cidr_block = "${var.subnet_a_cidr}"
   availability_zone = "us-east-1a"
 
   tags{
